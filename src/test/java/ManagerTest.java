@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Ticket;
+import ru.netology.domain.TicketByPriceAscComparator;
 import ru.netology.manager.Manager;
 import ru.netology.repository.Repository;
+
+import java.util.Comparator;
 
 public class ManagerTest {
   Repository repo = new Repository();
@@ -14,7 +17,7 @@ public class ManagerTest {
   Ticket tic5 = new Ticket(5, 25_000, "VNK", "TYF", 50);
   
   @Test
-  public void shouldSortTicketsByPrice() {
+  public void shouldSortTicketsByDurationFlight() {
     Ticket[] tickets = new Ticket[0];
     manager.save(tic1);
     manager.save(tic2);
@@ -22,8 +25,10 @@ public class ManagerTest {
     manager.save(tic4);
     manager.save(tic5);
     
-    Ticket[] actual = manager.findAll("VNK", "DMD");
-    Ticket[] expected = {tic4, tic1, tic2};
+    Comparator comparator = new TicketByPriceAscComparator();
+    
+    Ticket[] actual = manager.findAll("VNK", "DMD", comparator);
+    Ticket[] expected = {tic4, tic2, tic1};
     
     Assertions.assertArrayEquals(expected, actual);
     
