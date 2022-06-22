@@ -1,5 +1,6 @@
 package ru.netology.domain;
 
+import java.util.Objects;
 public class Ticket implements Comparable<Ticket> {
   private int id;
   private int price;
@@ -25,13 +26,7 @@ public class Ticket implements Comparable<Ticket> {
     }
     return 0;
   }
-  
-  
-  @Override
-  public String toString() {
-    return Integer.toString(price) + " - " + Integer.toString(id);
-  }
-  
+
   public int getId() {
     return id;
   }
@@ -43,8 +38,17 @@ public class Ticket implements Comparable<Ticket> {
   public String getToAirport() {
     return toAirport;
   }
+ 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Ticket ticket = (Ticket) o;
+    return id == ticket.id && price == ticket.price && flightDuration == ticket.flightDuration && Objects.equals(fromAirport, ticket.fromAirport) && Objects.equals(toAirport, ticket.toAirport);
+  }
   
-  public int getFlightDuration() {
-    return flightDuration;
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, price, fromAirport, toAirport, flightDuration);
   }
 }

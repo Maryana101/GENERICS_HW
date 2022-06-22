@@ -3,11 +3,11 @@ package ru.netology.manager;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.Repository;
 
+import java.security.PublicKey;
 import java.util.Arrays;
 
 public class Manager {
-  Repository repo = new Repository();
-  Ticket[] tickets = new Ticket[0];
+  private Repository repo;
   
   public Manager(Repository repo) {
     this.repo = repo;
@@ -16,7 +16,6 @@ public class Manager {
   public void save(Ticket newTicket) {
     repo.add(newTicket);
   }
-  
   public void removeById(int id) {
     repo.remove(id);
   }
@@ -37,5 +36,8 @@ public class Manager {
     return result;
   }
   
+  public Ticket[] getTickets(){
+    return repo.findAll();
+  }
+  
 }
-

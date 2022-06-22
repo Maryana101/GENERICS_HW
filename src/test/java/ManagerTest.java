@@ -4,6 +4,8 @@ import ru.netology.domain.Ticket;
 import ru.netology.manager.Manager;
 import ru.netology.repository.Repository;
 
+import java.util.Arrays;
+
 public class ManagerTest {
   Repository repo = new Repository();
   Manager manager = new Manager(repo);
@@ -15,7 +17,22 @@ public class ManagerTest {
   
   @Test
   public void shouldSortTicketsByPrice() {
-    Ticket[] tickets = new Ticket[0];
+    manager.save(tic1);
+    manager.save(tic2);
+    manager.save(tic3);
+    manager.save(tic4);
+    manager.save(tic5);
+  
+    Arrays.sort(manager.getTickets());
+    Ticket[] actual = manager.getTickets();
+    Ticket[] expected = {tic4, tic3, tic1, tic2, tic5};
+    
+    Assertions.assertArrayEquals(expected, actual);
+    
+  }
+  
+  @Test
+  public void shouldFindSortedTicketsForAirports() {
     manager.save(tic1);
     manager.save(tic2);
     manager.save(tic3);
@@ -24,6 +41,33 @@ public class ManagerTest {
     
     Ticket[] actual = manager.findAll("VNK", "DMD");
     Ticket[] expected = {tic4, tic1, tic2};
+    
+    Assertions.assertArrayEquals(expected, actual);
+    
+  }
+  
+  @Test
+  public void shouldRemoveTicketById() {
+    manager.save(tic1);
+    manager.save(tic2);
+    manager.save(tic3);
+    manager.save(tic4);
+    manager.save(tic5);
+    
+    manager.removeById(4);
+    
+    Ticket[] actual = manager.getTickets();
+    Ticket[] expected = {tic1, tic2, tic3, tic5};
+    
+    Assertions.assertArrayEquals(expected, actual);
+    
+  }
+  
+  @Test
+  public void shouldAddNewTicketIntoRepo() {
+    manager.save(tic2);
+    Ticket[] actual = manager.getTickets();
+    Ticket[] expected = {tic2};
     
     Assertions.assertArrayEquals(expected, actual);
     
