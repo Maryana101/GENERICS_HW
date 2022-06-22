@@ -4,34 +4,34 @@ package ru.netology.repository;
 import ru.netology.domain.Ticket;
 
 public class Repository {
-  private Ticket[] tickets=new Ticket[0];
+  private Ticket[] tickets = new Ticket[0];
   
-  public Repository(){
+  public Repository() {
   
   }
   
-  public void add(Ticket newTicket){
-    Ticket[] tmp=new Ticket[tickets.length+1];
+  public void add(Ticket newTicket) {
+    Ticket[] tmp = new Ticket[tickets.length + 1];
     for (int i = 0; i < tickets.length; i++) {
-      tmp[i]=tickets[i];
+      tmp[i] = tickets[i];
     }
-    tmp[tmp.length-1]=newTicket;
-    tickets=tmp;
+    tmp[tmp.length - 1] = newTicket;
+    tickets = tmp;
   }
   
-  public void remove(int id){
-    Ticket[] tmp= new Ticket[tickets.length-1];
-    int index=0;
+  public void remove(int id) {
+    Ticket[] tmp = new Ticket[tickets.length - 1];
+    int index = 0;
     for (int i = 0; i < tickets.length; i++) {
-      if (tickets[i].getId()!=id){
-        tmp[index]=tickets[i];
+      if (tickets[i].getId() != id) {
+        tmp[index] = tickets[i];
         index++;
       }
     }
-    tickets=tmp;
+    tickets = tmp;
   }
   
-  public Ticket[] findAll(){
+  public Ticket[] findAll() {
     return tickets;
   }
 }

@@ -7,8 +7,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class Manager {
-  Repository repo = new Repository();
-  Ticket[] tickets = new Ticket[0];
+  private Repository repo;
   
   public Manager(Repository repo) {
     this.repo = repo;
