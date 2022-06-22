@@ -3,6 +3,7 @@ package ru.netology.manager;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.Repository;
 
+import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -16,7 +17,6 @@ public class Manager {
   public void save(Ticket newTicket) {
     repo.add(newTicket);
   }
-  
   public void removeById(int id) {
     repo.remove(id);
   }
@@ -37,5 +37,8 @@ public class Manager {
     return result;
   }
   
+  public Ticket[] getTickets(){
+    return repo.findAll();
+  }
+  
 }
-
