@@ -23,7 +23,7 @@ public class Manager {
   public Ticket[] findAll(String from, String to) {
     Ticket[] result = new Ticket[0];
     for (Ticket ticket : repo.findAll()) {
-      if ((ticket.getFromAirport() == from) && (ticket.getToAirport() == to)) {
+      if ((ticket.getFromAirport().equals(from)) && (ticket.getToAirport().equals(to))) {
         Ticket[] tmp = new Ticket[result.length + 1];
         for (int i = 0; i < result.length; i++) {
           tmp[i] = result[i];
